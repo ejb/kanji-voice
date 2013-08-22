@@ -56,15 +56,24 @@ function nextCard(){
         });
     } else {
         $('#question').text("Finished!"); 
+        $('#results').text("Finished! Your results:"+quiz); 
         // show results page
     }
 };
 
 function runQuiz(quiz){
+    console.log(currentAnswer);
     quiz = shuffle(quiz);
-    var currentAnswer = 0;
     nextCard();
 };
 
+
+var currentAnswer = 0;
 var quiz = ["友達", "私", "元気", "魚"];
-runQuiz(quiz);
+
+$("#start").click(function() {
+    $(".intro").hide();
+    runQuiz(quiz);
+});
+
+
