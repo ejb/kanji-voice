@@ -45,14 +45,21 @@ function waitFor(answer, callback){
 
 function nextCard(){
     if (quiz[currentAnswer]){
-        answer = quiz[currentAnswer];
+        kanji = quiz[currentAnswer]['kanji'];
+        pron = quiz[currentAnswer]['pron'];
+        trans = quiz[currentAnswer]['trans'];
         currentAnswer++;
         console.log(currentAnswer);
-        console.log("Waiting for: "+answer);
-        $('#question').text(answer);
-        waitFor(answer, function() {
+        console.log("Waiting for: "+kanji);
+        $('#question').text(kanji);
+        waitFor(kanji, function() {
             console.log("Correct!");
-            nextCard();  
+            $('#answer').show().text("Correct! "+pron+" / "+trans);
+            setTimeout(function(){
+                // wait 2 seconds before moving on
+                $('#answer').hide();
+                nextCard();  
+            }, 2000);            
         });
     } else {
         $('#question').text("Finished!"); 
@@ -69,7 +76,28 @@ function runQuiz(quiz){
 
 
 var currentAnswer = 0;
-var quiz = ["友達", "私", "元気", "魚"];
+var quiz = [
+    {
+        "kanji": "友達",
+        "pron": "ともだち",
+        "trans": "friend"
+    },
+    {
+        "kanji": "私",
+        "pron": "わたし",
+        "trans": "myself"
+    },
+    {
+        "kanji": "元気",
+        "pron": "げんき",
+        "trans": "genki"
+    },
+    {
+        "kanji": "魚",
+        "pron": "さかな",
+        "trans": "fish"
+    },
+]
 
 $("#start").click(function() {
     $(".intro").hide();
