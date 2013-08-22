@@ -1,0 +1,31 @@
+<script>
+// code ripped from https://github.com/SupplyFrame/rvc/blob/master/rvc.js
+
+    var recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = "ja-JP"; // for Japanese words
+
+
+    recognition.onresult = function(event) {
+        final_transcript = '';
+        var interim_transcript = '';
+
+        for (var i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+                final_transcript += event.results[i][0].transcript;
+            } else {
+                interim_transcript += event.results[i][0].transcript;
+            }
+        }
+
+        if(final_transcript != "") {
+            console.log(final_transcript);
+            if(final_transcript == "天気") {
+                alert("correct!");
+            }
+        }
+    };
+
+    recognition.start();
+</script>
