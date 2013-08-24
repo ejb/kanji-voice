@@ -1,13 +1,40 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
 
-<div class="intro">
-    <h1>KanjiQuiz</h1>
-    <button id="start">Start</button>
-</div>
+<body>
+    <div class="section intro">
+        <h1>KanjiQuiz</h1>
+        <p>Make sure to switch on microphone.</p>
+        <button id="start">Start</button>
+    </div>
 
-<div style="font-size: 200px;" id="question"></div>
-<div id="answer"></div>
+    <div class="section quiz">
+        <p class="instructions">Pronounce the word below, or say "sukippu" to pass.<p>
+    </div>
 
-<div id="results"></div>
+    <div class="section results"></div>
 
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="script.js"></script>
+
+<script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js"></script>
+<script src="script.js" charset="UTF-8"></script>
+
+<script id="card" type="text/x-handlebars-template">
+
+    <div class="flip-container waiting">
+    	<div class="flipper">
+    	    <div class="front">
+                <p>{{kanji}}</p>				
+    		</div>
+    		<div class="back">
+        		<p>{{pron}}<br>{{trans}}</p>
+    		</div>
+    	</div>
+    </div>
+
+</script>
+
+
+</body>

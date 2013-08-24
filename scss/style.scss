@@ -1,0 +1,54 @@
+@import "reset";
+@import "mixins";
+
+body {
+    font-family: "Helvetica";
+}
+
+.section {
+    width: 100%;
+    height: 100%;
+    @include vendor-prefix(transition, top 0.5s ease-out);
+}
+
+.quiz, .results {
+//    display: none;
+    opacity: 0;
+    top: 100%;
+}
+
+.quiz.show {
+    position: fixed;
+    top: 0%;
+    display: block;
+    opacity: 1;
+}
+
+.intro {
+    background: #2E313B;
+    color: white;
+    text-align: center;
+    h1 {
+        padding: 1em 0;
+        font-size: 4em;
+    }
+}
+
+.quiz {
+    background: white;
+}
+
+    .instructions {
+        font-size: 1.2em;
+        color: gray;
+        text-align: center;
+        padding-top: 4em;
+    }
+
+
+
+
+@import "flipper";
+
+
+

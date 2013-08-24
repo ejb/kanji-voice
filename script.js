@@ -18,7 +18,6 @@ function waitFor(answer, callback){
         recognition.interimResults = true;
         recognition.lang = "ja-JP"; // for Japanese words
 
-
     recognition.onresult = function(event) {
         final_transcript = '';
         var interim_transcript = '';
@@ -33,7 +32,10 @@ function waitFor(answer, callback){
         final_transcript = trim1(final_transcript);
         if(final_transcript != "") {
             console.log(final_transcript);
-            if(final_transcript == answer) {
+            if(final_transcript.indexOf(answer) != -1){
+                callback();
+            } else if(final_transcript == "スキップ") {
+                console.log("fail");
                 callback();
             }
         }
@@ -48,31 +50,53 @@ function nextCard(){
         kanji = quiz[currentAnswer]['kanji'];
         pron = quiz[currentAnswer]['pron'];
         trans = quiz[currentAnswer]['trans'];
+        var newcard = cardHTML(quiz[currentAnswer]);
         currentAnswer++;
         console.log(currentAnswer);
         console.log("Waiting for: "+kanji);
-        $('#question').text(kanji);
-        waitFor(kanji, function() {
-            console.log("Correct!");
-            $('#answer').show().text("Correct! "+pron+" / "+trans);
-            setTimeout(function(){
-                // wait 2 seconds before moving on
-                $('#answer').hide();
-                nextCard();  
-            }, 2000);            
-        });
+        $('.quiz').addClass('show');
+        $('.quiz').append(newcard);
+        setTimeout(function(){
+            $('.waiting').removeClass('waiting');
+        }, 300);            
+        waitFor(kanji, function() { moveCards();  });
     } else {
-        $('#question').text("Finished!"); 
-        $('#results').text("Finished! Your results:"+quiz); 
+        $('.results').show().text("Finished! Your results:"+quiz); 
         // show results page
     }
 };
+
+function moveCards(){
+    console.log("Correct!");
+    $(".flip-container").addClass("animate");
+    setTimeout(function(){
+        // wait 3 seconds before moving on
+        $('.flip-container').addClass("exit");// .delay(1000).remove();
+        setTimeout(function(){
+            $('.exit').remove();
+        }, 300);            
+        nextCard();  
+    }, 3000);            
+    
+}
 
 function runQuiz(quiz){
     console.log(currentAnswer);
     quiz = shuffle(quiz);
     nextCard();
 };
+
+function cardHTML(text){
+    var source   = $("#card").html();
+    var template = Handlebars.compile(source);
+    var context = {
+        kanji: text['kanji'],
+        pron: text['pron'],
+        trans: text['trans']
+    };
+    var html = template(context);
+    return html;
+}
 
 
 var currentAnswer = 0;
@@ -100,7 +124,7 @@ var quiz = [
 ]
 
 $("#start").click(function() {
-    $(".intro").hide();
+    // $(".intro").hide();
     runQuiz(quiz);
 });
 
