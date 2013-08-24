@@ -64,10 +64,15 @@ body {
     text-align: center;
     padding-top: 4em; }
 
+.card {
+  margin: 1em 0;
+  height: 100px; }
+
 .live-results {
   text-align: center;
   width: 50%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  color: #DDD; }
 
 .live-result {
   width: 20px;
@@ -81,7 +86,7 @@ body {
 
 .flip-container {
   position: relative;
-  top: 0%;
+  left: 0;
   transition: all 0.5s ease-out;
   -webkit-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;
@@ -90,12 +95,12 @@ body {
 
 .flip-container.exit {
   position: relative;
-  top: 100%;
+  left: 200px;
   opacity: 0; }
 
 .flip-container.waiting {
   position: relative;
-  top: -100%;
+  left: -200px;
   opacity: 0; }
 
 /* simple */
@@ -106,7 +111,7 @@ body {
   margin: 0 auto; }
 
 .flip-container.animate .flipper, .flip-container.hover .flipper, #flip-toggle.flip .flipper {
-  -webkit-transform: scale(1.05) rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   transform: rotateY(180deg);
   filter: FlipH;
@@ -142,7 +147,7 @@ body {
 
 .back {
   background: white;
-  -webkit-transform: scale(1.05) rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   transform: rotateY(180deg);
   -webkit-box-shadow: 0 0 10px black;

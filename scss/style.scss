@@ -53,10 +53,16 @@ body {
     }
 }
 
+.card {
+    margin: 1em 0;
+    height: 100px;
+}
+
 .live-results {
     text-align: center;
     width: 50%;
     margin: 0 auto;
+    color: #DDD;
 }
 
 .live-result {
