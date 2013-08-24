@@ -32,21 +32,21 @@ body {
 .section {
   width: 100%;
   height: 100%;
-  transition: top 0.5s ease-out;
-  -webkit-transition: top 0.5s ease-out;
-  -ms-transition: top 0.5s ease-out;
-  -moz-transition: top 0.5s ease-out;
-  -o-transition: top 0.5s ease-out; }
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out; }
+  .section.show {
+    position: fixed;
+    top: 0%;
+    display: block;
+    opacity: 1; }
+  .section.hidden {
+    opacity: 0; }
 
 .quiz, .results {
-  opacity: 0;
-  top: 100%; }
-
-.quiz.show {
-  position: fixed;
-  top: 0%;
-  display: block;
-  opacity: 1; }
+  opacity: 0; }
 
 .intro {
   background: #2E313B;
@@ -57,13 +57,17 @@ body {
     font-size: 4em; }
 
 .quiz {
-  background: white; }
+  background: #fdfdfa; }
+  .quiz .instructions {
+    font-size: 1.2em;
+    color: gray;
+    text-align: center;
+    padding-top: 4em; }
 
-.instructions {
-  font-size: 1.2em;
-  color: gray;
-  text-align: center;
-  padding-top: 4em; }
+.results {
+  color: white;
+  background: #30090B;
+  font-size: 1.2em; }
 
 .flip-container {
   position: relative;

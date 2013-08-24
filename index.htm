@@ -36,5 +36,19 @@
 
 </script>
 
+<script id="results-template" type="text/x-handlebars-template">
+
+<h2>Results</h2>
+<ul>
+  {{#each this}}
+  <li>
+      <span class="mark">{{mark}}</span>
+      <span class="kanji">{{kanji}} ({{pron}} - {{trans}})</span>
+  </li>
+  {{/each}}
+</ul>
+
+</script>
+
 
 </body>

@@ -33,7 +33,7 @@ function waitFor(answer, num, callback){
         if(final_transcript != "") {
             console.log(final_transcript);
             if(final_transcript.indexOf(answer) != -1){
-                callback();
+                callback('pass', num);
             } else if(final_transcript == "スキップ") {
                 console.log("fail");
                 callback('skip', num);
@@ -54,7 +54,7 @@ function nextCard(){
         currentAnswer++;
         console.log(currentAnswer);
         console.log("Waiting for: "+kanji);
-        $('.quiz').addClass('show');
+        showPage('quiz');
         $('.quiz').append(newcard);
         setTimeout(function(){
             $('.waiting').removeClass('waiting');
@@ -71,7 +71,10 @@ function nextCard(){
 function markKanji(mark, currAn){
     switch(mark) {
     case "skip":
-        quiz[currAn]['mark'] = 'skip';
+        quiz[currAn]['mark'] = '✖';
+        break;
+    case "pass":
+        quiz[currAn]['mark'] = '✔';
         break;
     }
     
@@ -91,7 +94,7 @@ function moveCards(){
 }
 
 function runQuiz(quiz){
-    console.log(currentAnswer);
+    showPage('quiz');
     quiz = shuffle(quiz);
     nextCard();
 };
@@ -109,10 +112,17 @@ function cardHTML(text){
 }
 
 function showResults(){
-    for(var i=0,j=quiz.length;i<j;i++){
-        console.log(quiz[i]);
-    };
-    $('.results').show(); 
+    var source   = $("#results-template").html();
+    var template = Handlebars.compile(source);
+    var context = quiz;
+    var html = template(context);
+    $('.results').html(html); 
+    showPage('results');
+}
+
+function showPage(page){
+    $('.section').removeClass('show').addClass('hidden');     
+    $('.'+page).removeClass('hidden').addClass('show'); 
 }
 
 var currentAnswer = 0;
