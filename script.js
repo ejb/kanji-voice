@@ -11,7 +11,7 @@ function shuffle(o){ //v1.0
 };
 
 // code adapted from https://github.com/SupplyFrame/rvc/blob/master/rvc.js
-function waitFor(answer, callback){
+function waitFor(answer, num, callback){
 
     var recognition = new webkitSpeechRecognition();
         recognition.continuous = true;
@@ -36,7 +36,7 @@ function waitFor(answer, callback){
                 callback();
             } else if(final_transcript == "スキップ") {
                 console.log("fail");
-                callback();
+                callback('skip', num);
             }
         }
     };
@@ -59,15 +59,25 @@ function nextCard(){
         setTimeout(function(){
             $('.waiting').removeClass('waiting');
         }, 300);            
-        waitFor(kanji, function() { moveCards();  });
+        waitFor(kanji, currentAnswer-1, function(mark, num) {
+            markKanji(mark, num);
+            moveCards();
+        });
     } else {
-        $('.results').show().text("Finished! Your results:"+quiz); 
-        // show results page
+        showResults();
     }
 };
 
+function markKanji(mark, currAn){
+    switch(mark) {
+    case "skip":
+        quiz[currAn]['mark'] = 'skip';
+        break;
+    }
+    
+}
+
 function moveCards(){
-    console.log("Correct!");
     $(".flip-container").addClass("animate");
     setTimeout(function(){
         // wait 3 seconds before moving on
@@ -98,6 +108,12 @@ function cardHTML(text){
     return html;
 }
 
+function showResults(){
+    for(var i=0,j=quiz.length;i<j;i++){
+        console.log(quiz[i]);
+    };
+    $('.results').show(); 
+}
 
 var currentAnswer = 0;
 var quiz = [
@@ -122,6 +138,15 @@ var quiz = [
         "trans": "fish"
     },
 ]
+
+// for debug purposes only
+// quiz = [
+//     {
+//         "kanji": "魚",
+//         "pron": "さかな",
+//         "trans": "fish"
+//     }
+// ]
 
 $("#start").click(function() {
     // $(".intro").hide();
