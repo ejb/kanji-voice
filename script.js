@@ -69,14 +69,17 @@ function nextCard(){
 };
 
 function markKanji(mark, currAn){
+    var markout;
     switch(mark) {
     case "skip":
-        quiz[currAn]['mark'] = '✖';
+        markout = '✖';
         break;
     case "pass":
-        quiz[currAn]['mark'] = '✔';
+        markout = '✔';
         break;
     }
+    quiz[currAn]['mark'] = markout;
+    updateLiveResults(currAn, markout);
     
 }
 
@@ -96,6 +99,7 @@ function moveCards(){
 function runQuiz(quiz){
     showPage('quiz');
     quiz = shuffle(quiz);
+    createLiveResults();
     nextCard();
 };
 
@@ -124,6 +128,21 @@ function showPage(page){
     $('.section').removeClass('show').addClass('hidden');     
     $('.'+page).removeClass('hidden').addClass('show'); 
 }
+
+function createLiveResults(){
+    var html = "";
+    for(var i=0,j=quiz.length;i<j;i++){
+        html += '<span class="live-result" id="lr'+i+'">◊</span>';
+    }    
+    console.log(html);
+    $(".live-results").append(html);
+}
+
+function updateLiveResults(num, mark){
+    $("#lr"+num).html(mark);    
+    
+}
+
 
 var currentAnswer = 0;
 var quiz = [
@@ -162,5 +181,4 @@ $("#start").click(function() {
     // $(".intro").hide();
     runQuiz(quiz);
 });
-
 

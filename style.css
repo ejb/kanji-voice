@@ -64,6 +64,16 @@ body {
     text-align: center;
     padding-top: 4em; }
 
+.live-results {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto; }
+
+.live-result {
+  width: 20px;
+  display: inline-block;
+  text-align: center; }
+
 .results {
   color: white;
   background: #30090B;
