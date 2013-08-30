@@ -82,7 +82,8 @@ body {
 .results {
   color: white;
   background: #30090B;
-  font-size: 1.2em; }
+  font-size: 1.2em;
+  padding: 100px 200px; }
 
 .flip-container {
   position: relative;
