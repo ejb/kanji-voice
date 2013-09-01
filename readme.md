@@ -1,8 +1,10 @@
 # Kanji Voice Quiz
 
-A more natural way to practice Japanese [Kanji](http://en.wikipedia.org/wiki/Kanji "Kanji - Wikipedia, the free encyclopedia") readings: simply speak the phoenetic translation of the character shown.
+A more natural way to practice Japanese [Kanji](http://en.wikipedia.org/wiki/Kanji "Kanji - Wikipedia, the free encyclopedia") readings: simply speak the phoenetic translation of the character shown. [Live demo here](https://kanjivoice.s3.amazonaws.com/index.htm).
 
 This is a work in progress that makes use of the experimental [Web Speech API](https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html), and so currently **only works on Chrome**. Make sure to allow access to the microphone; a headset is recommended.
+
+Note: Due to Chrome's security policies, the only way to stop the microphone permission dialogue from appearing on each question is to view the page over HTTPS.
 
 ## Build instructions
 
