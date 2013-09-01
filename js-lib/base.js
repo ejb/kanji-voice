@@ -37,6 +37,8 @@ function waitFor(answer, num, callback){
             } else if(final_transcript == "スキップ") {
                 console.log("fail");
                 callback('skip', num);
+            } else {
+                console.log(final_transcript+" is wrong");
             }
         }
     };
@@ -144,8 +146,10 @@ function updateLiveResults(num, mark){
 
 var currentAnswer = 0;
 
+// Change number of questions and chosen dictionary here
 var cutoff = 20;
-var selection = basicDictionary;
+var selection = jlpt5;
+
 var quiz = selection.splice(0, 20);
 
 
