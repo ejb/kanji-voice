@@ -29,6 +29,9 @@ table {
 body {
   font-family: "Helvetica"; }
 
+html, body {
+  height: 100%; }
+
 .section {
   width: 100%;
   height: 100%;
@@ -55,6 +58,14 @@ body {
   .intro h1 {
     padding: 1em 0;
     font-size: 4em; }
+  .intro p {
+    width: 50%;
+    margin: 0 auto 1em auto;
+    text-align: left; }
+    .intro p a {
+      color: inherit; }
+    .intro p strong {
+      font-weight: bold; }
 
 .quiz {
   background: #fdfdfa; }

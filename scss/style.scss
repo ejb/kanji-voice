@@ -5,6 +5,10 @@ body {
     font-family: "Helvetica";
 }
 
+html, body {
+    height: 100%;
+}
+
 .section {
     width: 100%;
     height: 100%;
@@ -39,6 +43,17 @@ body {
     h1 {
         padding: 1em 0;
         font-size: 4em;
+    }
+    p {
+        width: 50%;
+        margin: 0 auto 1em auto;
+        text-align: left;
+        a {
+            color: inherit;
+        }
+        strong {
+            font-weight: bold;
+        }
     }
 }
 
